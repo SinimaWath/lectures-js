@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Context Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Блокирует -->
+  <script src="..."></script>
+  <!-- Не блокирует, но порядок не гарантирован. DOM не обязательно готов -->
+  <script async src="..."></script>
+
+  <!-- Не блокирует, но порядок гарантирован. HTML распаршен DOM готов -->
+  <script defer src="..."></script>
+
+  <!-- Работает так же как и defer -->
+  <script type="module" src="./main.js"></script>
+
+</head>
+<body>
+  <h1>Hello World</h1>
+  <p>Попробуй нажать правую кнопку мыши.</p>
+</body>
+</html>

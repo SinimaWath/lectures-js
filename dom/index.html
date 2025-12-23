@@ -1,0 +1,91 @@
+<html>
+<body>
+  <h1 class="header" someUnknownAttr="unk">Правда о лосях.</h1>
+  
+  <ol class="list" id="list" data-name-some="1">
+    <li class="list list__element">Лось -- животное хитрое</li>
+    
+    <!-- комментарий -->
+    
+    <li class="list list__element">
+      <a href="https://ru.wikipedia.org/wiki/Лоси">Лось большой</a>
+    </li>
+   
+  </ol>
+
+  <script>
+    // Search
+    // 1 способ
+    // В чем проблема?
+    // 1 - не стабильный
+    // 2 - не читаемой
+    // Когда можно? Когда вложенность максимум 1.
+    const link = document.body.children[1].lastElementChild.children[0];
+
+    // 2 способ
+    const list = document.querySelector('.list');
+    console.dir(list);
+
+    const lis = document.querySelectorAll('.list__element');
+    console.log(lis, list.children, Array.from(lis), Array.from(list.children));
+    console.log([...lis], [...list.children]);
+
+    // 2.1 способ
+    const list2 = document.getElementById('list');
+
+    // Create
+
+    // 1 variant
+
+    const li = document.createElement('li');
+    li.id = 'big';
+
+    const a = document.createElement('a');
+    a.href = 'google.com';
+    a.textContent = 'Лось большой!';
+
+    li.append(a);
+
+    console.log(li.querySelector('a'));
+    console.log(document.querySelector('#big'));
+
+    list.append(li);
+
+    console.log(document.querySelector('#big'));
+
+
+    // 2 variant
+
+    const template = `
+    <li id="big2">
+      <a href="google.com">Лось большой! 2</a>
+    </li>
+    `;
+    
+    // list.innerHTML = list.innerHTML + template;
+
+    list.insertAdjacentHTML('beforeend', template);
+   
+    // Attrs
+    list.hidden = true;
+
+    // id, href, value, required ....
+
+    // class 
+    list.classList.add('list');
+    list.classList.remove('list');
+    list.classList.toggle('list');
+    list.classList.contains('list');
+
+
+    // data-* -> data-name-some="1" -> nameSome
+    console.log(list.dataset);
+
+    
+    console.log(
+      document.querySelector('.header').getAttribute('someUnknownAttr')
+    );
+
+  </script>
+</body>
+</html>
