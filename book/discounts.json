@@ -1,0 +1,5 @@
+[
+  { "bookId": 101, "percent": 0.1 },
+  { "bookId": 102, "percent": 0.15 },
+  { "bookId": 105, "percent": 0.2 }
+]

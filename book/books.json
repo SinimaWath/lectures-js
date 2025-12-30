@@ -1,0 +1,7 @@
+[
+  { "id": 101, "title": "Событийный цикл изнутри", "author": "Н. Макро", "price": 23.5 },
+  { "id": 102, "title": "Fetch и CORS без боли", "author": "Е. Нетворкин", "price": 21 },
+  { "id": 103, "title": "Промисы на практике", "author": "П. Резолвер", "price": 26.4 },
+  { "id": 104, "title": "Async/await для тимлида", "author": "А. Вейтер", "price": 24.9 },
+  { "id": 105, "title": "Dynamic import для ленивых", "author": "Д. Импортов", "price": 19.99 }
+]

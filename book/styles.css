@@ -1,0 +1,149 @@
+:root {
+  color-scheme: light;
+  font-family: "Fira Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  background: radial-gradient(circle at 20% 20%, #fff5e6, #fdf8f5 45%, #f2f4ff);
+  color: #0f172a;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+}
+
+.lab {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.lab__panel {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+}
+
+.lab__panel h1,
+.lab__panel h2 {
+  margin: 0 0 8px 0;
+}
+
+.lab__controls {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.lab__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lab__book {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+}
+
+.lab__hint {
+  margin: 6px 0 14px;
+  color: #475569;
+}
+
+.lab__buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  color: #ffffff;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+button.secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.lab__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.lab__item {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.lab__item strong {
+  font-size: 16px;
+}
+
+.lab__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lab__price {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: #ecfeff;
+  color: #0ea5e9;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.lab__small {
+  font-size: 12px;
+  color: #475569;
+}
+
+@media (max-width: 1024px) {
+  .lab__controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .lab {
+    grid-template-columns: 1fr;
+  }
+}
