@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Catalog Studio</title>
+
+<link rel="stylesheet" href="styles.css" />
+
+<body>
+  <script type="module">
+    import escapeHtml from "./escape.js";
+    const form = document.forms.productForm;
+
+    console.log(form.elements.title);
+
+    let formWithError = false;
+
+    // 1. Когда меняется фокус, - blur, change
+    // 2. Когда он вводит символы - input
+    // 3. Проверить перед отправкой - submit
+
+    form.elements.title.addEventListener("change", () => {
+      form.elements.title.value;
+      if (form.elements.title.value.includes("a")) {
+        formWithError = true;
+        console.log("Ошибка формы");
+      }
+    });
+
+    form.elements.title.addEventListener("input", () => {
+      form.elements.title.value;
+      if (form.elements.title.value.includes("a")) {
+        formWithError = true;
+        console.log("Ошибка формы в реальном времени");
+      }
+    });
+
+    function validateForm(form) {
+      const description = form.description;
+
+      if (!description.value.includes("Круто")) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function getImageItem(url, name) {
+      const wrapper = document.createElement("div");
+
+      wrapper.innerHTML = `
+      <li class="products-edit__imagelist-item sortable-list__item">
+        <span>
+          <img class="sortable-table__cell-img" alt="${escapeHtml(
+            name
+          )}" src="${escapeHtml(url)}">
+          <span>${escapeHtml(name)}</span>
+        </span>
+
+        <button type="button">
+          <img src="./icon-trash.svg" alt="delete" data-delete-handle>
+        </button>
+      </li>`;
+
+      return wrapper.firstElementChild;
+    }
+
+    let images = [];
+
+    async function upload() {
+      // Для того, чтобы кастомизировать интерфейс пользователя
+      const fileInput = document.createElement("input");
+      fileInput.type = "file";
+      fileInput.accept = "image/*";
+
+      const file = await new Promise((resolve) => {
+        fileInput.addEventListener("change", () => resolve(fileInput.files[0]));
+
+        // Не работает вне обработчиков событий
+        fileInput.click();
+      });
+
+      if (!file) {
+        console.log("Нет файла");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const result = await fetch(
+        "https://api.imgbb.com/1/upload?key=cc9bd9600675d1b88af9206e2296f308",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!result.ok) {
+        return;
+      }
+
+      const {
+        data: { display_url },
+      } = await result.json();
+
+      const image = {
+        url: display_url,
+        name: file.name,
+      };
+
+      images.push(image);
+
+      form
+        .querySelector('[data-element="imageListContainer"]')
+        .append(getImageItem(image.url, image.name));
+    }
+
+    form.querySelector('[data-element="uploadImage"]').onclick = upload;
+
+    form.addEventListener("submit", async (event) => {
+      // 1. Вариант, это остановить отправку если есть ошибки
+
+      const isValid = validateForm(form);
+      if (!isValid) {
+        console.log("Форма не валидная");
+        event.preventDefault();
+
+        // Мы добавляем стили/елементы на страницу с ошибкой.
+      }
+
+      // 2. Забрать управлние у браузера и самым отправлять форму
+      event.preventDefault();
+
+      // FormData vs JSON
+      // FormData - binary, JSON - нет (только если закодируете в base64)
+      //
+      const formData = new FormData(form);
+
+      try {
+        const resp = await fetch(form.action, {
+          body: formData,
+          method: form.method,
+        });
+
+        if (!resp.ok) {
+          console.log("error");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  </script>
+
+  <div id="root">
+    <form
+      class="form-grid product-form"
+      name="productForm"
+      action="https://httpbin.org/post"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      <div class="form-group form-group__half_left">
+        <label class="form-label">
+          Название товара
+          <input
+            name="title"
+            type="text"
+            class="form-control"
+            placeholder="Пример: Видеокарта"
+            required
+            maxlength="10"
+          />
+        </label>
+      </div>
+
+      <div class="form-group form-group__wide">
+        <label class="form-label">
+          Описание
+          <textarea
+            name="description"
+            class="form-control"
+            placeholder="Описание товара"
+          ></textarea>
+        </label>
+      </div>
+
+      <div class="form-group form-group__wide">
+        <label class="form-label"
+          >Фото
+          <!-- <input name="photo" type="file" /> -->
+
+          <ul class="sortable-list" data-element="imageListContainer"></ul>
+          <button
+            data-element="uploadImage"
+            type="button"
+            class="button-primary-outline"
+          >
+            <span>Загрузить</span>
+          </button>
+        </label>
+      </div>
+
+      <div class="form-group form-group__half_left">
+        <label class="form-label">
+          Категория
+          <select class="form-control" name="category">
+            <option value="tovary-dlya-kuxni">
+              Бытовая техника &gt; Товары для кухни
+            </option>
+            <option value="tovary-dlya-doma">
+              Бытовая техника &gt; Товары для дома
+            </option>
+            <option value="krasota-i-zdorove">
+              Бытовая техника &gt; Красота и здоровье
+            </option>
+            <option value="smartfony-i-gadzhety">
+              Смартфоны &gt; Смартфоны и гаджеты
+            </option>
+            <option value="fototexnika">Смартфоны &gt; Фототехника</option>
+            <option value="planshety-elektronnye-knigi">
+              Смартфоны &gt; Планшеты, электронные книги
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <fieldset class="form-group form-group__half_left form-group__two-col">
+        <label class="form-label">
+          Цена ($)
+          <input
+            name="price"
+            type="number"
+            class="form-control"
+            placeholder="100"
+          />
+        </label>
+        <label class="form-label">
+          Скидка ($)
+          <input
+            name="discount"
+            type="number"
+            class="form-control"
+            placeholder="0"
+          />
+        </label>
+      </fieldset>
+
+      <div class="form-group form-group__half_left">
+        <label class="form-label">
+          Согласен на обработку данных
+          <input name="agree" type="checkbox" class="form-control" />
+        </label>
+      </div>
+
+      <div class="form-buttons">
+        <button type="submit" class="button-primary-outline">
+          Добавить товар
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
