@@ -1,0 +1,21 @@
+{
+  "name": "testing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+    "test:unit:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.4.1",
+    "@types/jest": "^30.0.0",
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

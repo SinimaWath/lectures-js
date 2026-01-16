@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`orders card config snapshot 1`] = `
+{
+  "barHeights": [
+    36,
+    24,
+    20,
+    38,
+    15,
+    48,
+    6,
+    42,
+    22,
+    28,
+    35,
+    16,
+    45,
+    5,
+    40,
+    20,
+    29,
+    34,
+    18,
+    46,
+    7,
+    52,
+    10,
+    48,
+    12,
+    36,
+    24,
+    28,
+    32,
+    18,
+  ],
+  "linkHref": "#",
+  "linkText": "Подробнее",
+  "title": "Заказы",
+  "value": 638,
+}
+`;
