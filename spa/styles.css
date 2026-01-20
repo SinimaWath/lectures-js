@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap");
+
+:root {
+  --bg: #f3efe8;
+  --bg-accent: #e6f0ff;
+  --panel: #ffffff;
+  --text: #1f2328;
+  --muted: #5f6b7a;
+  --accent: #ff6b3d;
+  --accent-soft: #ffe2d6;
+  --accent-2: #2c7be5;
+  --border: #ded7cc;
+  --shadow: 0 18px 30px rgba(22, 25, 30, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg), var(--bg-accent));
+  padding: 24px;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.nav a:hover {
+  border-color: var(--accent);
+}
+
+.nav a.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.actions button:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+
+.content {
+  padding: 24px;
+}
+
+.page {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.page h1 {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.page p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.page--loading {
+  text-align: center;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.card {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  background: #fffaf4;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #8a3b24;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.filter input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.filter button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.button-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background: #ff7a55;
+}
+
+.inline-link {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.inline-link:hover {
+  border-bottom-color: var(--accent-2);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.timer {
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding: 16px;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page h1 {
+    font-size: 26px;
+  }
+}

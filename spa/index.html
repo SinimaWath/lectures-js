@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vanilla SPA Router</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Works similar to defer -->
+  <script type="module" src="./main.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="logo">Vanilla SPA</div>
+      <nav class="nav">
+        <a href="/spa/" data-nav-link>Home</a>
+        <a href="/spa/products" data-nav-link>Products</a>
+        <a href="/spa/categories" data-nav-link>Categories</a>
+        <a href="/spa/about" data-nav-link>About</a>
+      </nav>
+      <div class="actions">
+        <button type="button" data-action="back">Back</button>
+        <button type="button" data-action="forward">Forward</button>
+      </div>
+    </header>
+
+    <main id="content" class="content">
+      <div class="page page--loading">Loading...</div>
+    </main>
+  </div>
+</body>
+</html>
