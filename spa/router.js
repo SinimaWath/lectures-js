@@ -17,6 +17,8 @@ export class Router {
     }
 
     // TODO: Events
+    document.body.addEventListener("click", this.#handleBodyClick);
+    window.addEventListener("popstate", this.#handlePopState);
 
     // Initial render supports deep links on first load.
     this.render(window.location.pathname + window.location.search);
@@ -113,14 +115,46 @@ export class Router {
   }
 
   #updateTitle(title) {
-   // TODO: Update title
+    if (!title) {
+      return;
+    }
+
+    document.title = `${title} | Vanilla SPA`;
   }
 
-  #handleBodyClick = (event) => {
-    // TODO: handle body click
+  #handlePopState = (event) => {
+    this.render(window.location.pathname + window.location.search);
   };
 
-  #handlePopState = () => {
+  // Делигирование
+  #handleBodyClick = (event) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    const link = event.target.closest("a");
+    if (!link) {
+      return;
+    }
+
+    // <a target="_blank">
+    if (link.target && link.target !== "_self") {
+      return;
+    }
+
+    const url = new URL(link.href, window.location.origin);
+    if (url.origin !== window.location.origin) {
+      return;
+    }
+
+    event.preventDefault();
+
+    this.navigate(url.pathname + url.search);
+
     // TODO: handle pop state
   };
 }
