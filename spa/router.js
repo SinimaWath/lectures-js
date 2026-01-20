@@ -58,7 +58,11 @@ export class Router {
     // Destroy previous component to prevent orphaned listeners.
     this.#destroyCurrentPage();
     // Component contract: constructor accepts { path, router }.
-    this.currentPage = new route.component({
+    const component = await route.component();
+
+    console.log(component);
+
+    this.currentPage = new component({
       path: pathname,
       router: this,
     });

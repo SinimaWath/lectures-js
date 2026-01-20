@@ -1,6 +1,4 @@
 import { Router } from "./router.js";
-import { HomePage } from "./pages/HomePage.js";
-import { ProductsPage } from "./pages/ProductsPage.js";
 import { CategoriesPage } from "./pages/CategoriesPage.js";
 import { AboutPage } from "./pages/AboutPage.js";
 import { NotFoundPage } from "./pages/NotFoundPage.js";
@@ -9,27 +7,29 @@ const routes = [
   {
     path: "/spa/",
     title: "Home",
-    component: HomePage,
+    // LazyLoad
+    component: () => import("./pages/HomePage.js").then((m) => m.HomePage),
   },
   {
     path: "/spa/products",
     title: "Products",
-    component: ProductsPage,
+    component: () =>
+      import("./pages/ProductsPage.js").then((m) => m.ProductsPage),
   },
   {
     path: "/spa/categories",
     title: "Categories",
-    component: CategoriesPage,
+    component: () => CategoriesPage,
   },
   {
     path: "/spa/about",
     title: "About",
-    component: AboutPage,
+    component: () => AboutPage,
   },
   {
     path: "*",
     title: "Not Found",
-    component: NotFoundPage,
+    component: () => NotFoundPage,
   },
 ];
 
