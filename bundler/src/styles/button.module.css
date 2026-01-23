@@ -1,0 +1,24 @@
+.lazyButton {
+  margin-top: 24px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lazyButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(240, 93, 35, 0.3);
+}
+
+.lazyButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

@@ -1,0 +1,2 @@
+This line comes from a raw text asset imported via Webpack's asset/source type.
+It demonstrates how bundlers can inline non-code resources directly into JS.
