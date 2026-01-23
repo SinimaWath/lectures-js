@@ -1,0 +1,51 @@
+{
+  "name": "bundler-lecture-example",
+  "version": "1.0.0",
+  "description": "Modern Webpack + Babel + ESLint example for a frontend bundler lecture",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "NODE_ENV=production webpack --config webpack.prod.js",
+    "build:analyze": "NODE_ENV=production webpack --config webpack.prod.js --env analyze",
+    "lint": "eslint --max-warnings=0 \"src/**/*.js\"",
+    "lint:fix": "eslint --fix \"src/**/*.js\""
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "core-js": "3.48.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.28.6",
+    "@babel/eslint-parser": "7.28.6",
+    "@babel/plugin-transform-class-properties": "7.28.6",
+    "@babel/preset-env": "7.28.6",
+    "babel-loader": "10.0.0",
+    "copy-webpack-plugin": "13.0.1",
+    "css-loader": "7.1.2",
+    "eslint": "9.39.2",
+    "eslint-webpack-plugin": "5.0.2",
+    "html-webpack-plugin": "5.6.6",
+    "mini-css-extract-plugin": "2.9.4",
+    "style-loader": "4.0.0",
+    "terser-webpack-plugin": "5.3.16",
+    "webpack": "5.104.1",
+    "webpack-bundle-analyzer": "5.2.0",
+    "webpack-cli": "6.0.1",
+    "webpack-dev-server": "5.2.3",
+    "webpack-merge": "6.0.1"
+  }
+}
