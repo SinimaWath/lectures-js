@@ -1,0 +1,58 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.teapot-demo {
+  position: fixed;
+  inset: 0;
+}
+
+.teapot-demo__hint {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 251, 235, 0.82);
+  box-shadow: 0 10px 30px rgba(120, 53, 15, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.teapot {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 220px;
+  height: 220px;
+  margin-left: -110px;
+  margin-top: -110px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+
+.teapot_dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 18px 20px rgba(120, 53, 15, 0.25));
+  transform: rotate(-2deg);
+}
+
+.teapot__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
