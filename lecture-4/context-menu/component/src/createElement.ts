@@ -1,12 +1,14 @@
-export const createElement = (html: string): HTMLElement => {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
+export function createElement(template: string): HTMLElement {
+    const element = document.createElement('template');
+    element.innerHTML = template.trim();
+    const firstElementChild = element.content.firstElementChild;
+    if (!firstElementChild) {
+        throw new Error('Invalid rendering')
+    }
 
-  const content = template.content.firstElementChild;
-
-  if (!content) {
-    throw new Error('Something went wront with rendering');
-  }
-
-  return document.importNode(content, true) as HTMLElement;
+    // doument.importNode()
+    return firstElementChild as HTMLElement;
 }
+
+const lol = 1;
+export default lol; 
