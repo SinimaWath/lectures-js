@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div id="root">
+        <div class="product-form">
+
+            <form data-element="productForm" class="form-grid">
+                <div class="form-group form-group__half_left">
+                    <label class="form-label">Название товара
+                        <input required="" id="title" value="" type="text" name="title" class="form-control"
+                            list="product-titles" autocomplete="off"
+                            placeholder="Название товара">
+                    </label>
+                    <datalist id="product-titles">
+                        <option value="Apple iPhone 15"></option>
+                        <option value="Samsung Galaxy S24"></option>
+                        <option value="Dyson V15 Detect"></option>
+                        <option value="Xiaomi Robot Vacuum S10"></option>
+                        <option value="Sony WH-1000XM5"></option>
+                    </datalist>
+                </div>
+
+                <div class="form-group form-group__wide">
+                    <label class="form-label" for="description">Описание</label>
+                    <textarea required="" id="description" class="form-control" name="description"
+                        data-element="productDescription" placeholder="Описание товара"></textarea>
+                </div>
+
+                <div class="form-group form-group__wide">
+                    <label class="form-label">Фото</label>
+
+                    <ul class="sortable-list" data-element="imageListContainer">
+                        <li class="products-edit__imagelist-item sortable-list__item">
+                            <span>
+                                <img class="sortable-table__cell-img" alt="logo.svg"
+                                    src="https://i.ibb.co/3y2PyqKq/logo.jpg">
+                                <span>logo.svg</span>
+                            </span>
+
+                            <button type="button">
+                                <img src="./icon-trash.svg" alt="delete" data-delete-handle="">
+                            </button>
+                        </li>
+                    </ul>
+
+                    <button data-element="uploadImage" type="button" class="button-primary-outline">
+                        <span>Загрузить</span>
+                    </button>
+                </div>
+
+                <div class="form-group form-group__half_left">
+                    <label class="form-label" for="subcategory">Категория</label>
+                    <select class="form-control" id="subcategory" name="subcategory">
+                        <option value="tovary-dlya-kuxni">Бытовая техника &gt; Товары для кухни</option>
+                        <option value="tovary-dlya-doma">Бытовая техника &gt; Товары для дома</option>
+                        <option value="krasota-i-zdorove">Бытовая техника &gt; Красота и здоровье</option>
+                        <option value="smartfony-i-gadzhety">Смартфоны &gt; Смартфоны и гаджеты</option>
+                        <option value="fototexnika">Смартфоны &gt; Фототехника</option>
+                        <option value="planshety-elektronnye-knigi">Смартфоны &gt; Планшеты, электронные книги</option>
+                    </select>
+                </div>
+
+                <fieldset class="form-group form-group__half_left form-group__two-col">
+                    <label class="form-label">Цена ($)
+                        <input required="" id="price" value="" type="number" name="price" class="form-control"
+                            placeholder="100">
+                    </label>
+                    <label class="form-label">Скидка ($)
+                        <input required="" id="discount" value="" type="number" name="discount" class="form-control"
+                            placeholder="0">
+                    </label>
+                </fieldset>
+
+                <div class="form-group form-group__part-half">
+                    <label class="form-label">Статус</label>
+                    <select id="status" class="form-control" name="status">
+                        <option value="1">Активен</option>
+                        <option value="0">Неактивен</option>
+                    </select>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" name="save" class="button-primary-outline">
+                        Добавить товар
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </body>
+</html>
