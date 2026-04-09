@@ -91,7 +91,8 @@ export class RouterNavApi {
   }
 
   #updateNav(pathname: string): void {
-    const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+    const links =
+      document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
 
     links.forEach((link) => {
       const href = link.getAttribute("href");

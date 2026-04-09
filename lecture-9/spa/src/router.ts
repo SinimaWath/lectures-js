@@ -35,16 +35,13 @@ export class Router {
   }
 
   navigate(path: string, { replace = false }: NavigateOptions = {}): void {
-    const nextUrl = new URL(path, window.location.origin);
-    const nextPath = nextUrl.pathname + nextUrl.search;
-
     if (replace) {
-      history.replaceState(null, "", nextPath);
+      history.replaceState(null, "", path);
     } else {
-      history.pushState(null, "", nextPath);
+      // history.state - чтобы получить текущий стейт переданный в pushState
+      history.pushState(null, "", path);
     }
-
-    void this.render(nextPath);
+    this.render(path);
   }
 
   async render(path: string): Promise<void> {
@@ -57,8 +54,13 @@ export class Router {
       return;
     }
 
+    // destroy();
+    // render();
     this.#destroyCurrentPage();
 
+    // Lazy Loading: Dynamic Import, await import () =>
+    // Предположить самые популярные страницы
+    // Preload
     this.currentPage = new route.component({
       path: pathname,
       router: this,
@@ -93,7 +95,8 @@ export class Router {
   }
 
   #updateNav(pathname: string): void {
-    const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+    const links =
+      document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
 
     links.forEach((link) => {
       const href = link.getAttribute("href");
@@ -115,7 +118,8 @@ export class Router {
   }
 
   #updateTitle(title: string): void {
-    document.title = title ? `${title} | Vanilla SPA` : "Vanilla SPA";
+    // TODO: Title
+    document.title = title ? `${title} | Vanilla SPA` : `Vanilla SPA`;
   }
 
   #handleBodyClick = (event: MouseEvent): void => {
@@ -123,9 +127,9 @@ export class Router {
       event.defaultPrevented ||
       event.button !== 0 ||
       event.metaKey ||
+      event.altKey ||
       event.ctrlKey ||
-      event.shiftKey ||
-      event.altKey
+      event.shiftKey
     ) {
       return;
     }
@@ -148,12 +152,7 @@ export class Router {
       return;
     }
 
-    const href = link.getAttribute("href");
-    if (!href) {
-      return;
-    }
-
-    const url = new URL(href, window.location.origin);
+    const url = new URL(link.href, window.location.origin);
     if (url.origin !== window.location.origin) {
       return;
     }
@@ -163,6 +162,6 @@ export class Router {
   };
 
   #handlePopState = (): void => {
-    void this.render(window.location.pathname + window.location.search);
+    this.render(location.pathname + location.search);
   };
 }

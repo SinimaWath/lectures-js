@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="app">
+      <!-- Заранее отрисованный Header (SSR) -->
       <header class="topbar">
         <div class="logo">Vanilla SPA</div>
         <nav class="nav">
@@ -22,6 +23,7 @@
         </div>
       </header>
 
+      <!-- Динамический контет (CSR) -->
       <main id="content" class="content">
         <div class="page page--loading">Loading...</div>
       </main>
