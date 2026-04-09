@@ -1,16 +1,19 @@
-import { createElement } from "../utils/createElement.js";
+import type { PageContext } from "../types";
+import { createElement } from "../utils/create-element";
+import type { Router } from "../router";
 
 export class HomePage {
-  element = null;
-  #router = null;
-  #ctaButton = null;
+  element: HTMLElement | null = null;
 
-  constructor({ router }) {
+  readonly #router: Router;
+  #ctaButton: HTMLButtonElement | null = null;
+
+  constructor({ router }: PageContext<Router>) {
     this.#router = router;
   }
 
-  render() {
-    this.element = createElement(`
+  render(): HTMLElement {
+    this.element = createElement<HTMLElement>(`
       <section class="page">
         <h1>SPA routing with History API</h1>
         <p>
@@ -41,19 +44,24 @@ export class HomePage {
       </section>
     `);
 
-    this.#ctaButton = this.element.querySelector('[data-action="go-products"]');
+    this.#ctaButton = this.element.querySelector<HTMLButtonElement>(
+      '[data-action="go-products"]',
+    );
+
+    if (!this.#ctaButton) {
+      throw new Error("Products CTA button was not rendered");
+    }
+
     this.#ctaButton.addEventListener("click", this.#handleCtaClick);
 
     return this.element;
   }
 
-  destroy() {
-    if (this.#ctaButton) {
-      this.#ctaButton.removeEventListener("click", this.#handleCtaClick);
-    }
+  destroy(): void {
+    this.#ctaButton?.removeEventListener("click", this.#handleCtaClick);
   }
 
-  #handleCtaClick = () => {
+  #handleCtaClick = (): void => {
     this.#router.navigate("/products");
   };
 }

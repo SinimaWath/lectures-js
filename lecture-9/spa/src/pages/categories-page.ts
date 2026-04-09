@@ -1,17 +1,17 @@
-import { createElement } from "../utils/createElement.js";
+import { createElement } from "../utils/create-element";
 
 const CATEGORIES = [
   { name: "Lighting", query: "lamp" },
   { name: "Workspace", query: "desk" },
   { name: "Audio", query: "audio" },
   { name: "Storage", query: "kit" },
-];
+] as const;
 
 export class CategoriesPage {
-  element = null;
+  element: HTMLElement | null = null;
 
-  render() {
-    this.element = createElement(`
+  render(): HTMLElement {
+    this.element = createElement<HTMLElement>(`
       <section class="page">
         <h1>Categories</h1>
         <p>
@@ -20,14 +20,14 @@ export class CategoriesPage {
         </p>
         <ul class="list">
           ${CATEGORIES.map(
-            (item) => `
+            ({ name, query }) => `
               <li>
-                <a class="inline-link" href="/spa/products?q=${item.query}">
-                  ${item.name}
+                <a class="inline-link" href="/products?q=${query}">
+                  ${name}
                 </a>
-                <span class="badge">/spa/products?q=${item.query}</span>
+                <span class="badge">/products?q=${query}</span>
               </li>
-            `
+            `,
           ).join("")}
         </ul>
       </section>

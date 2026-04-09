@@ -1,10 +1,10 @@
-import { createElement } from "../utils/createElement.js";
+import { createElement } from "../utils/create-element";
 
 export class NotFoundPage {
-  element = null;
+  element: HTMLElement | null = null;
 
-  render() {
-    this.element = createElement(`
+  render(): HTMLElement {
+    this.element = createElement<HTMLElement>(`
       <section class="page">
         <h1>404</h1>
         <p>The route does not exist. Check the URL or go back home.</p>
