@@ -60,6 +60,8 @@ function lessonLoader(): Plugin {
         return null;
       }
 
+      // binaryCal(....);
+
       const source = readFileSync(id, "utf8");
       const cards = parseLessonSource(source);
 
@@ -87,15 +89,17 @@ function lectureToolsPlugin(): Plugin {
           pluginName: "lecture-tools-plugin",
           hmrEvent: "lecture:loader-updated",
           chunkName: "feature-lab",
-          note:
-            "Плагин создаёт virtual module, добавляет атрибут в index.html и шлёт HMR-событие при изменении .lesson файла.",
+          note: "Плагин создаёт virtual module, добавляет атрибут в index.html и шлёт HMR-событие при изменении .lesson файла.",
         },
         null,
         2,
       )};`;
     },
     transformIndexHtml(html) {
-      return html.replace("<body>", '<body data-powered-by="lecture-tools-plugin">');
+      return html.replace(
+        "<body>",
+        '<body data-powered-by="lecture-tools-plugin">',
+      );
     },
     handleHotUpdate(context) {
       if (!context.file.endsWith(".lesson")) {

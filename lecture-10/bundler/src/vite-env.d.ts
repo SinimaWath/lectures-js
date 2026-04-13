@@ -8,6 +8,8 @@ declare module "*.lesson" {
     reason: string;
   }>;
 
+  export function toString() {}
+
   export default cards;
 }
 
@@ -18,4 +20,9 @@ declare module "virtual:lecture-meta" {
     chunkName: string;
     note: string;
   };
+}
+
+declare module "*.svg" {
+  const svg: string;
+  export default svg;
 }

@@ -20,7 +20,10 @@ type LoaderHotPayload = {
 };
 
 type HotModuleWithCustomEvents = NonNullable<ImportMeta["hot"]> & {
-  on(event: "lecture:loader-updated", callback: (payload: LoaderHotPayload) => void): void;
+  on(
+    event: "lecture:loader-updated",
+    callback: (payload: LoaderHotPayload) => void,
+  ): void;
 };
 
 const appRoot = document.querySelector("#app");
@@ -48,7 +51,8 @@ hmrValue.textContent = hmrMessageState;
 
 const hmrStatus = document.createElement("p");
 hmrStatus.className = "status-line";
-hmrStatus.textContent = "Измените src/content/hmr-message.ts во время npm run dev.";
+hmrStatus.textContent =
+  "Измените src/content/hmr-message.ts во время npm run dev.";
 
 function createTextParagraph(text: string): HTMLParagraphElement {
   const paragraph = document.createElement("p");
@@ -57,7 +61,11 @@ function createTextParagraph(text: string): HTMLParagraphElement {
   return paragraph;
 }
 
-function createExampleCard(title: string, description: string, reason: string): HTMLElement {
+function createExampleCard(
+  title: string,
+  description: string,
+  reason: string,
+): HTMLElement {
   const article = document.createElement("article");
   article.className = "example-card";
 
@@ -75,7 +83,9 @@ function createExampleCard(title: string, description: string, reason: string): 
 
 function renderLoaderCards(cards: readonly LessonCard[]): void {
   loaderGrid.replaceChildren(
-    ...cards.map((card) => createExampleCard(card.title, card.description, card.reason)),
+    ...cards.map((card) =>
+      createExampleCard(card.title, card.description, card.reason),
+    ),
   );
 }
 
@@ -115,11 +125,13 @@ function createPluginSection(): HTMLElement {
   title.textContent = "virtual:lecture-meta";
 
   const name = createTextParagraph(`Плагин: ${pluginMeta.pluginName}`);
-  const event = createTextParagraph(`Кастомное HMR-событие: ${pluginMeta.hmrEvent}`);
-  const chunk = createTextParagraph(`Имя отдельного чанка: ${pluginMeta.chunkName}`);
-  const note = createTextParagraph(
-    `Зачем нужен: ${pluginMeta.note}`,
+  const event = createTextParagraph(
+    `Кастомное HMR-событие: ${pluginMeta.hmrEvent}`,
   );
+  const chunk = createTextParagraph(
+    `Имя отдельного чанка: ${pluginMeta.chunkName}`,
+  );
+  const note = createTextParagraph(`Зачем нужен: ${pluginMeta.note}`);
   note.className = "example-card__reason";
 
   card.append(title, name, event, chunk, note);
