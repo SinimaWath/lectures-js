@@ -1,0 +1,11 @@
+{
+  "name": "lecture-3-ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
