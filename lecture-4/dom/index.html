@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <script src="analytics.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <style></style>
+  </head>
+  <body>
+    <h1 class="header" someUnknownAttr="unk">Правда о лосях.</h1>
+
+    <ol class="list" id="list" data-name-some="1">
+      <li class="list list__element">Лось -- животное хитрое</li>
+
+      <!-- комментарий -->
+
+      <li class="list list__element">
+        <a href="https://ru.wikipedia.org/wiki/Лоси">Лось большой</a>
+      </li>
+    </ol>
+
+    <div class="list__element"></div>
+
+    <script>
+      // Только на 1 уровень вложеность
+      // const a = document.body.children[1].children[2].firstElementChild;
+
+      document.querySelector('[data-component="List"]');
+
+      // Большой уровень вложенности
+      const a2 = document.querySelector(".list__element > a");
+
+      const header = document.querySelector(".header");
+      const list = document.querySelector("#list");
+      console.log(header);
+
+      const firstElement = list.querySelector(".list__element");
+      const allElements = list.querySelectorAll(".list__element");
+
+      console.log(allElements, Array.from(allElements), [...allElements]);
+
+      console.log("-------");
+
+      const listChildren = list.children;
+      console.log(Array.from(listChildren));
+
+      list.firstElementChild.remove();
+
+      console.log(Array.from(listChildren));
+
+      // console.log(list.children, Array.from(list.children));
+
+      // 1. Create Element - 1 - 2 елементов
+
+      const li = document.createElement("li");
+      li.textContent = "Los cool";
+      li.id = "asdasd";
+
+      const infoLink = document.createElement("a");
+      infoLink.textContent = "link";
+      infoLink.href = "youtube.com";
+
+      li.append(infoLink);
+
+      list.append(li);
+      console.dir(li);
+
+      // 2. HTML Template
+
+      const html = `
+      <li class="li" id="asd" data-lol="123">
+        Los is cool
+        <a href="asdas">Link</a>
+      </li>
+      `;
+
+      list.insertAdjacentHTML("beforeend", html);
+    </script>
+    <!-- <script type="module" src="/src/main.ts"></script> -->
+  </body>
+</html>
