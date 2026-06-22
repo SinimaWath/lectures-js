@@ -1,0 +1,12 @@
+.ball {
+  cursor: pointer; 
+  position: absolute;
+  z-index: 1000; 
+  left: 147px; 
+  top: 105px;
+}
+
+.ball_dragging {
+  cursor: grabbing;
+  opacity: 0.5; /* Визуальная обратная связь */
+}

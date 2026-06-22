@@ -1,0 +1,17 @@
+.status {
+  margin-left: 20px;
+  font-size: 24px  
+}
+
+button {
+  font-size: 24px;
+}
+
+.main {
+  margin-bottom: 12px;
+  padding: 16px;
+  background-color: #efefef;
+  
+  display: flex;
+  align-items: center;
+}
