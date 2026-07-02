@@ -1,0 +1,23 @@
+{
+  "name": "testing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:e2e",
+    "nodetest": "node --test nodejs/get.test.js",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:books": "playwright test e2e/books.spec.js",
+    "test:e2e:ui": "playwright test --ui",
+    "run": "http-server ui -p 3000"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.4.1",
+    "http-server": "^14.1.1",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.1.1"
+  }
+}
