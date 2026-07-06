@@ -1,0 +1,18 @@
+{
+  "name": "lecture-10-bundler",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.13.5",
+    "@types/node": "^25.6.0",
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0"
+  }
+}
